@@ -1,0 +1,14 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+LudoBardos is a group of game developers from Rio de Janeiro, Brazil. The only thing in common is their love for playing and making games, wheter are they digital or boardgames, for they come from different graduations: engineering, design and law.
+
+This heteregeneous mixture should probably spawn some very good results. At least, they won't draw themselves into boredom as different ideas come from different minds.
+
+= Current formation =
+
+Currently, the LudoBardos are:
+  * *Arthur Protasio*: lawyer - game designer
+  * *Bruno Baere*: computer engineer - programmer
+  * *Yan Magno* : designer - artist
