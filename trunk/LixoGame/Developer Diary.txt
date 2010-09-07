@@ -1,0 +1,54 @@
+Ultima atualização: 26/8/2010
+
+-- Indicação do estágio na fase puzzle
+-- Sprite de morte para o lado que o Bananixo estiver virado
+-- A 3 segundos de terminar a fase, um beep começa a tocar anunciando o fim.
+-- Corrigido detalhe do som no vidro quebrando (tocava mesmo se som estivesse desligado).
+-- Jogador que finaliza tem a fase final marcada com um + ao lado, no High Score.
+
+24/8/2010
+
+-- Coloquei um bloco try-catch para evitar o travamento em Linux e Mac (e alguns Windows) que não estão suportando o GameRef.bsSound.getAudioRenderer. Espero ter resolvido esse problema, embora com isso talvez o som do Bananixo morrendo e da porta se abrindo continuem tocando quando passar da fase plataforma.
+-- Alterei quando chamava o GameField.update na fase puzzle. Espero que isso solucione o "bug alpha".
+
+
+23/8/2010
+
+-- Alteração nas cutscenes (agora são 13). As cutscenes são embaralhadas a cada novo jogo.
+-- Bananixo pode pegar um número máximo de balas agora.
+-- Espero ter corrigido a maior parte dos vazamentos de memória
+-- Esta versão ainda tem códigos para verificar um bug que ocorre ao colocar os blocos de lixo para reciclagem. Por favor, enviem todos os dados possíveis (impressão do console no momento do bug, fase, versão da máquina virtual java, etc.)
+-- Bugs conhecidos:
+	- Erro de colisão nos espinhos. Pode ser detectada uma colisão TOP_BOTTOM e o Bananixo ficar preso na parte superior dos espinhos (entrando um pouco na imagem)
+
+22/8/2010
+
+-- Mudanças nos gráficos e gameplay
+-- Modificado para ter uma fase final (descubra qual o número =D)
+-- Cutscenes a cada 5 fases para mostrar mensagens relativas a reciclagem de lixo
+-- Acertar todos os blocos de lixo corretamente rende pontos!
+-- Muitas mudanças internas visando sua melhor jogabilidade =)
+-- Créditos atualizados
+-- Ainda alguns bugs (mas nem todos afetam tanto o gameplay), mas se encontrar algum, nos avise.
+
+15/8/2010
+
+-- Modificados gráficos de vida, saúde e recicláveis
+-- Modificada velocidade do personagem para poder superar obstáculo de espinhos direito
+-- Adicionada opção de remover som e música
+-- Adicionado High Score (embora ainda não totalmente funcional)
+-- Adicionado som de ferimento ao Bananixo
+-- Modificado som de Game Over
+-- Saúde máxima limitada para 3
+-- Tempo para término da fase limitado para 15 segundos
+
+
+28/3/2010
+
+-- Modificados gráficos das cestas de reciclagem
+-- Inclusão de som de tiro e pegar arma
+-- Versão de testes com música desativada
+
+12/3/2010
+
+-- Consertados os problemas de colisão com objetos do cenário
