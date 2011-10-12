@@ -64,6 +64,7 @@ public class GameManager {
     private int ActiveBlock; //Which block is active
     private LinkedList<Column> ColumnOrder; //Order of block appearance
     private boolean[] blocksOk; //Which baskets are ok
+    private double dropVelocity;
 
     private SpriteGroup PlayerGroup;
     private SpriteGroup PlayerShotsGroup;
@@ -115,6 +116,7 @@ public class GameManager {
 
         Stage = 1;
         time = "";
+        dropVelocity = GameConstants.InitialBlockVelocity;
 
         //gameTimer = new Timer(GameConstants.ClockTimer);
         //gameTimer.setActive(false);
@@ -198,24 +200,7 @@ public class GameManager {
                             }
                         }//if
                         
-                        ++Stage;
-                        if (Stage > GameConstants.EndStage )
-                        {
-                            LoadEndGameState();
-                            GameState = InGameState.EndScene;
-                        }
-                        //Cutscene check, every stage divisible by 5
-                        else if(Stage % GameConstants.CutsceneStageModulo == 0)
-                        {
-                            GameState = InGameState.Cutscene;
-                            LoadCutsceneState();   
-                        }
-                        else
-                        {
-                            GameState = InGameState.PuzzleState;
-                            LoadPuzzleState();
-                        }//if
-                        
+                        AdvanceStage(allcorrect);
                         break;
 
                     }//if
@@ -260,9 +245,6 @@ public class GameManager {
                     {
                         //GameField.update(elapsedTime);
                     }//if
-
-                    double dropVelocity = GameConstants.InitialBlockVelocity +
-                            GameConstants.BlockAcceleration*Stage;
 
                     if ( dropVelocity > GameConstants.MaxVelocity)
                     {
@@ -596,7 +578,7 @@ public class GameManager {
 
         //Moves the block up
         //blk.setY(terrain.getY() - blk.getHeight());
-        blk.setY(blk.getOldY());
+        blk.setY(GameConstants.AssetY - blk.getHeight());
 
         //Sets basket state to full
         blocksOk[basketNumber] = true;
@@ -1506,6 +1488,36 @@ public class GameManager {
     }
 
     /**
+     * Advances one stage, updating GameState and loading assets relative to
+     * the next stage. Must unload previous state before calling.
+     * @param advancePuzzle True if must advance to a puzzle stage
+     */
+    private void AdvanceStage(boolean advancePuzzle) {
+        ++Stage;
+        dropVelocity += GameConstants.BlockAcceleration*Stage*0.15;
+        if (Stage > GameConstants.EndStage )
+        {
+            LoadEndGameState();
+            GameState = InGameState.EndScene;
+        }
+        //Cutscene check, every stage divisible by 5
+        else if(Stage % GameConstants.CutsceneStageModulo == 0)
+        {
+            GameState = InGameState.Cutscene;
+            LoadCutsceneState();   
+        }
+        else if (advancePuzzle)
+        {
+            GameState = InGameState.PuzzleState;
+            LoadPuzzleState();
+        }
+        else{
+            GameState = InGameState.PlatformState;
+            LoadPlatformState();
+        }
+    }
+
+    /**
      * This class provides methods that handle collision between the terrain and something else,
      * for example the character
      */
@@ -1653,32 +1665,7 @@ public class GameManager {
                 GameField.removeGroup(PlayerGroup);
                 UnloadPlatformState();
 
-                AdvanceStage();
-            }//if
-        }
-
-        /**
-         * Advances one stage, updating GameState and loading assets relative to
-         * the next stage. Must unload previous state before calling.
-         */
-        private void AdvanceStage() {
-            ++Stage;
-                
-            if (Stage > GameConstants.EndStage )
-            {
-                LoadEndGameState();
-                GameState = InGameState.EndScene;
-            }
-            //Cutscene check, every stage divisible by 5
-            else if(Stage % GameConstants.CutsceneStageModulo != 0)
-            {
-                LoadPuzzleState();
-                GameState = InGameState.PuzzleState;
-            }
-            else
-            {
-                GameState = InGameState.Cutscene;
-                LoadCutsceneState();
+                AdvanceStage(true);
             }//if
         }
     }
