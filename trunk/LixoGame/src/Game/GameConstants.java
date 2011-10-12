@@ -96,8 +96,8 @@ public class GameConstants {
     static final int BulletDamage = 1;
     static final double BulletSpeed = 2.0;
     static final double SpikesVelocity = 0.5;
-    static final public double InitialBlockVelocity = 1.4;
-    static final public double BlockAcceleration = 0.15;
+    static final public double InitialBlockVelocity = 1.0;
+    static final public double BlockAcceleration = 0.425;
 
     //Menu Items
     static final public String BackgroundImageTitle = "resources/images/openingscreen/fundo-inicio.png";
