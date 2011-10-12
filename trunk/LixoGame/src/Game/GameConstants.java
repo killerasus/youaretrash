@@ -56,7 +56,7 @@ public class GameConstants {
     static final public String AmmoString = "Ammo: ";
     static final public String Screenshot = "YAT_screen_";
     static final public int EndGameTimer = 13000;
-    static final public int EndStage = 42;
+    static final public int EndStage = 15;
 
     //UI Elements
     static final public int UIElementsStartX = 20;
@@ -130,7 +130,7 @@ public class GameConstants {
     static final public String GameOverScreen = "resources/images/backgrounds/game_over.jpg";
     static final public String CutsceneFile = "resources/images/backgrounds/level_cutscene";
     static int Cutscenes = 6; //Number of cutscenes
-    static final public int CutsceneStageModulo = 5;
+    static final public int CutsceneStageModulo = 3;
     static int NumberofBlocks = 4;
     static int BeepThreshold = 3;
 }

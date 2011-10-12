@@ -156,11 +156,11 @@ public class GameManager {
                 //System.out.println("blocksOk[0] = " + blocksOk[0] + "\tblocksOk[1] = " + blocksOk[1] +
                 //         "\tblocksOk[2] = " + blocksOk[2] + "\tblocksOk[3] = " + blocksOk[3] + "\n");
 
+                boolean allcorrect = true;
+                
                 if (blocksOk[0] == true && blocksOk[1] == true &&
                         blocksOk[2] == true && blocksOk[3] == true)
                 {
-                    boolean allcorrect = true;
-
                     for (int i = 0; i < TrashInBaskets.length; i++)
                     {
                         if(TrashInBaskets[i] == RecyclableFeature.MetalProblem ||
@@ -197,12 +197,34 @@ public class GameManager {
                                 System.out.println(e.getMessage());
                             }
                         }//if
+                        
+                        ++Stage;
+                        if (Stage > GameConstants.EndStage )
+                        {
+                            LoadEndGameState();
+                            GameState = InGameState.EndScene;
+                        }
+                        //Cutscene check, every stage divisible by 5
+                        else if(Stage % GameConstants.CutsceneStageModulo == 0)
+                        {
+                            GameState = InGameState.Cutscene;
+                            LoadCutsceneState();   
+                        }
+                        else
+                        {
+                            GameState = InGameState.PuzzleState;
+                            LoadPuzzleState();
+                        }//if
+                        
+                        break;
 
                     }//if
-
-                    UnloadPuzzleState();
-                    LoadPlatformState();
-                    GameState = InGameState.PlatformState;
+                    else
+                    {
+                        UnloadPuzzleState();
+                        LoadPlatformState();
+                        GameState = InGameState.PlatformState;
+                    }
                 }
                 else
                 {
@@ -262,11 +284,9 @@ public class GameManager {
 
                 int leftTime = (int) ((GameConstants.ClockTimer - bananaGameTimer.getTimePast())/1000);
                 
-                //if (gameTimer.action(elapsedTime))\
                 if (bananaGameTimer.checkTimer())
                 {
                     Hero.setHealth(0);
-                    //break;
                 }//if
 
                 if (Hero.getLives() > 0)
@@ -487,7 +507,7 @@ public class GameManager {
         JOptionPane.showMessageDialog(null, String.format("%s, your score was %s and your stage was %s", playerName, Hero.getScore(), this.Stage));
 
         ScoreTracker current = new ScoreTracker(playerName, (int) Hero.getScore(),
-                this.Stage, (this.GameState == GameState.EndScene? true: false));
+                this.Stage, (this.GameState == InGameState.EndScene? true: false));
         List<ScoreTracker> scores = new ArrayList<ScoreTracker>();
 
         try {
@@ -1302,7 +1322,7 @@ public class GameManager {
             System.out.println(e.getMessage());
         }
 
-        if (GameState != GameState.PausedState)
+        if (GameState != InGameState.PausedState)
             GameRef.BigFont.drawText(g, "0:" + time, GameFont.CENTER,
                 (int)Clock.getX(), (int) (Clock.getY() - 60), 200, 0, 0);
 
@@ -1607,7 +1627,6 @@ public class GameManager {
             {
                 try
                 {
-                    ++Stage;
                     int slot;
                     BaseAudioRenderer test = null;
                     if(GameRef.GetSoundState())
@@ -1634,22 +1653,32 @@ public class GameManager {
                 GameField.removeGroup(PlayerGroup);
                 UnloadPlatformState();
 
-                if (Stage > GameConstants.EndStage )
-                {
-                    LoadEndGameState();
-                    GameState = InGameState.EndScene;
-                }
-                //Cutscene check, every stage divisible by 5
-                else if(Stage % GameConstants.CutsceneStageModulo != 0)
-                {
-                    LoadPuzzleState();
-                    GameState = InGameState.PuzzleState;
-                }
-                else
-                {
-                    GameState = InGameState.Cutscene;
-                    LoadCutsceneState();
-                }//if
+                AdvanceStage();
+            }//if
+        }
+
+        /**
+         * Advances one stage, updating GameState and loading assets relative to
+         * the next stage. Must unload previous state before calling.
+         */
+        private void AdvanceStage() {
+            ++Stage;
+                
+            if (Stage > GameConstants.EndStage )
+            {
+                LoadEndGameState();
+                GameState = InGameState.EndScene;
+            }
+            //Cutscene check, every stage divisible by 5
+            else if(Stage % GameConstants.CutsceneStageModulo != 0)
+            {
+                LoadPuzzleState();
+                GameState = InGameState.PuzzleState;
+            }
+            else
+            {
+                GameState = InGameState.Cutscene;
+                LoadCutsceneState();
             }//if
         }
     }
