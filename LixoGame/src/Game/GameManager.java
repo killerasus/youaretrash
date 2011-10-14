@@ -527,6 +527,7 @@ public class GameManager {
             finally
             {
                 scores.add(current);
+                Collections.sort(scores);
             }
 
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(parentPath + File.separator + "hiscore.dat"));

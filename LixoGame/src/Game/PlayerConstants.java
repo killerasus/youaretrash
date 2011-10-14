@@ -14,9 +14,9 @@ public class PlayerConstants {
     //static final public String PlayerSpriteSheet = "resources/images/character/sprite_ajeitadinho.png";
     static final public int PlayerSpriteSheetColumns = 18;
     static final public int PlayerSpriteSheetLines = 1;
-    static final public int StartingLives = 3;
+    static final public int StartingLives = 1;
     static final public int StartingHealth = 3;
-    static final public int MaxLife = 5;
+    static final public int MaxLife = 3;
     static final public int MaxHealth = 3;
     static final public int StartingAmmo = 0;
     static final public int AmmoMax = 30;

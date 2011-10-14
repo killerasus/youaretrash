@@ -1,4 +1,4 @@
-The code in this work is licensed under the Creative Commons GNU Lesser General Public License License. To view a copy of this license, visit http://creativecommons.org/licenses/LGPL/2.1/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+The code in this work is licensed under the GNU Lesser General Public License License. To view a copy of this license, visit http://www.gnu.org/licenses/lgpl.html.
 
 The Golden T Game Engine is licensed under a GNU Lesser General Public License and can be downloaded at http://goldenstudios.or.id
 
