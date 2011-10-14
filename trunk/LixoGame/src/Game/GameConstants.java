@@ -65,7 +65,7 @@ public class GameConstants {
     static final public int InvincibleY = 84;
     static final public double ClockPositionX = 340;
     static final public double ClockPositionY = 20;
-    static final public int ClockTimer = 10000;
+    static final public int ClockTimer = 8000;
     static final public int GameOverTimer = 4200;
     static final public int CutsceneTimer = 4000;
     static final public int UIRightElement = 420;

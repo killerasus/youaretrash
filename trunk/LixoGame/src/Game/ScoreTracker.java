@@ -66,18 +66,19 @@ public class ScoreTracker implements Serializable, Comparable<ScoreTracker> {
 
     @Override
     public int compareTo(ScoreTracker o) {
-        if (this._score < o._score)
-            return 1;
-        else if (this._score > o._score)
+        if (this._finalized && !o._finalized)
             return -1;
+        else if (!this._finalized && o._finalized)
+            return 1;
         else if (this._stage < o._stage)
             return 1;
         else if (this._stage > o._stage)
             return -1;
-        else if (!this._finalized && !o._finalized)
-            return -1;
-        else if (this._finalized && !o._finalized)
+        else if (this._score < o._score)
             return 1;
-        else return 0;
+        else if (this._score > o._score)
+            return -1;
+        else return this._name.compareToIgnoreCase(o._name);
+        
     }
 }
