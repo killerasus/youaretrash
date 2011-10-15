@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.7.1
 Created-By: 11.0-b16 (Sun Microsystems Inc.)
-Main-Class: Game.LixoGame
-Class-Path: lib/golden_0_2_3.jar lib/jl1.0.1.jar lib/GTGE_add_ons.jar
+Main-Class: LixoGame.LixoGame
+Class-Path: lib/GTGE.jar lib/jl1.0.1.jar lib/GTGE_add_ons.jar
 X-COMMENT: Main-Class will be added automatically by build
 
