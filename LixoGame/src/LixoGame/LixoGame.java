@@ -451,12 +451,7 @@ public class LixoGame extends Game {
 
                 if (scoreTable!=null)
                 {
-                    if (scoreTable.isEmpty()){}
-                        //System.out.println("FUDEU");
-                    else
-                    {
-
-
+                    if (!scoreTable.isEmpty()){
                         LittleFont.drawText(g, "NAME", GameFont.LEFT, GameConstants.ScoreNameX, GameConstants.ScoresStartingy, 620, 10, 20);
                         LittleFont.drawText(g, "SCORE" , GameFont.LEFT, GameConstants.ScorePointsX, 354, GameConstants.ScoresStartingy, 10, 20);
                         nexty = LittleFont.drawText(g, "STAGE", GameFont.LEFT, GameConstants.ScoreStageX, GameConstants.ScoresStartingy, 620, 10, 20);
@@ -467,8 +462,8 @@ public class LixoGame extends Game {
                             LittleFont.drawText(g, score.getName(), GameFont.LEFT, GameConstants.ScoreNameX, nexty + 10, 620, 10, 20);
                             LittleFont.drawText(g, String.valueOf(score._score) , GameFont.LEFT, GameConstants.ScorePointsX, nexty + 10, 620, 10, 20);
                             nexty = LittleFont.drawText(g, (score.getFinalized()? "+":"") + String.valueOf(score._stage), GameFont.LEFT, GameConstants.ScoreStageX, nexty + 10, 620, 10, 20);
-                        }
-                    }
+                        }//for
+                    }//if
                 }//if
 
                 break;
@@ -613,10 +608,10 @@ public class LixoGame extends Game {
 
             try{
                 input = new ObjectInputStream(new FileInputStream(parentPath + File.separator + GameConstants.HiscoreFileString));
-
+                
                 while (true)
                 {
-                    scores.add((ScoreTracker)input.readObject());
+                    scores.add((ScoreTracker) input.readObject());
                 }
             }
             catch(EOFException e)
@@ -632,7 +627,8 @@ public class LixoGame extends Game {
             }
             finally
             {
-                Collections.sort(scores);
+                if (input != null)
+                    input.close();
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);

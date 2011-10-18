@@ -487,11 +487,12 @@ public class GameManager {
 
     /**
      * Register score prompts user for Name input and updates hiscore file
-     * @throws IOException
      * @throws ClassNotFoundException
+     * @throws IOException
      */
-    private void RegisterScore() throws IOException, ClassNotFoundException
+    private void RegisterScore() throws ClassNotFoundException, IOException
     {
+        ObjectOutputStream output = null;
         String playerName = JOptionPane.showInputDialog("Register your name in the Hall of Fame!");
         JOptionPane.showMessageDialog(null, String.format("%s, your score was %s and your stage was %s", playerName, Hero.getScore(), this.Stage));
 
@@ -537,7 +538,7 @@ public class GameManager {
                 Collections.sort(scores);
             }
 
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(parentPath + File.separator + "hiscore.dat"));
+            output = new ObjectOutputStream(new FileOutputStream(parentPath + File.separator + "hiscore.dat"));
             //ObjectOutputStream output = new ObjectOutputStream(getClass().getResource("hiscore.dat").openStream());
 
             /**
@@ -549,9 +550,17 @@ public class GameManager {
                 output.writeObject(score);
             }
 
-            output.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        finally
+        {
+            if (output != null)
+                output.close();
         }
     }
 
