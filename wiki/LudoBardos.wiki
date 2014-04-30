@@ -11,6 +11,6 @@ This heteregeneous mixture should probably spawn some very good results. At leas
 Currently, the LudoBardos are:
   * *Arthur Protasio*: game designer
   * *Bruno Baere*: programmer
-  * *Yan Magno* : artist
-  * *Leonardo Cardarelli: artist, game designer
-  * *Rian Rezende: game designer
+  * *Yan Magno*: artist
+  * *Leonardo Cardarelli*: artist, game designer
+  * *Rian Rezende*: game designer
